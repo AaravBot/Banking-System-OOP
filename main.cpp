@@ -3,7 +3,7 @@ using namespace std;
 
 class Account
 {
-private:
+protected:
     int accountNumber;
     string accHolderName;
     double balance;
@@ -78,17 +78,19 @@ public:
     }
 
     void withdraw(double amount) override {
-        if (amount <= getBalance() + overdraftLimit) {
-            double newBalance = getBalance() - amount;
-            Account::withdraw(getBalance());
-            cout << "Overdraft used: " << amount - getBalance() << endl;
+    if (amount <= balance + overdraftLimit) {
+        balance -= amount;
 
-            cout << "Withdrawn: " << amount << endl;
-            cout << "Balance is now negative (overdraft mode)\n";
-        } else {
-            cout << "Exceeded overdraft limit!\n";
+        cout << "Withdrawn: " << amount << endl;
+
+        if (balance < 0) {
+            cout << "Overdraft used: " << -balance << endl;
         }
+
+    } else {
+        cout << "Exceeded overdraft limit!\n";
     }
+}
 };
 
 int main(){
