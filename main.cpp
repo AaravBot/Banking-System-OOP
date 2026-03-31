@@ -94,9 +94,43 @@ public:
 };
 
 int main(){
-    CurrentAccount acc2(102, "Aarav", 5000, 2000);
-    acc2.withdraw(6000);
-    acc2.withdraw(3000);
-    acc2.display();
+    int choice;
+    SavingsAccount acc1(101, "Aarav", 5000, 1000);
+    do {
+        cout << "\n--- Banking System Menu ---\n";
+        cout << "1. Deposit\n";
+        cout << "2. Withdraw\n";
+        cout << "3. Display Account\n";
+        cout << "4. Exit\n";
+        cout << "Enter choice: ";
+        cin >> choice;
+        double amount;
+        switch(choice) {
+            case 1:
+                cout << "Enter amount to deposit: ";
+                cin >> amount;
+                acc1.deposit(amount);
+                break;
+
+            case 2:
+                cout << "Enter amount to withdraw: ";
+                cin >> amount;
+                acc1.withdraw(amount);
+                break;
+
+            case 3:
+                acc1.display();
+                break;
+
+            case 4:
+                cout << "Exiting...\n";
+                break;
+
+            default:
+                cout << "Invalid choice!\n";
+        }
+
+    } while(choice != 4);
+
     return 0;
 }
